@@ -1,0 +1,41 @@
+name: Lint & Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check HTML
+      run: |
+        if [ -f index.html ]; then
+          echo "✓ HTML file found"
+        else
+          echo "✗ HTML file missing"
+          exit 1
+        fi
+    
+    - name: Check CSS
+      run: |
+        if [ -f style.css ]; then
+          echo "✓ CSS file found"
+        else
+          echo "✗ CSS file missing"
+          exit 1
+        fi
+    
+    - name: Check JavaScript
+      run: |
+        if [ -f script.js ]; then
+          echo "✓ JavaScript file found"
+        else
+          echo "✗ JavaScript file missing"
+          exit 1
+        fi
